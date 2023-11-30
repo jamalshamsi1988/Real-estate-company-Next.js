@@ -4,7 +4,7 @@ import {FiLogIn} from 'react-icons/fi'
 
 const Header = () => {
   return (
-    <header className={StyleSheet.header}>
+    <header className={styles.header}>
       <div>
         <ul>
             <li>
