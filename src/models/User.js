@@ -1,4 +1,4 @@
-import { Schema, models, model } from "bcryptjs";
+import { Schema, models, model } from "mongoose";
 
 const userSchema = new Schema({
   email: {
