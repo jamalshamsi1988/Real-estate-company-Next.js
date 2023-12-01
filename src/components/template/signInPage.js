@@ -2,41 +2,35 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from 'next/navigation'
+import {signIn} from 'next-auth/react'
 import { toast, Toaster } from "react-hot-toast";
 import { ThreeDots } from "react-loader-spinner";
 import styles from "./SignUpPage.module.css";
 
-const SignUpPage = () => {
+const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rePassword, setRePassword] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const signupHandler = async (e) => {
+  const signinHandler = async (e) => {
     e.preventDefault();
 
-    if (password !== rePassword) {
-      toast.error("رمزعبور و تکرار رمزعبور برابر نیست ");
-      return;
-    }
     setLoading(true);
-    const res = await fetch("/api/auth/signup", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-      headers: { "Content-Type": "application/json" },
+    const res = await signIn("credentials",{
+        email,password ,redirect:false
     });
-    const data = await res.json();
     setLoading(false);
-    if (res.status === 201) {
-      router.push("/signin");
+    if (res.error) {
+        toast.error(res.error);
+     
     } else {
-      toast.error(data.error);
+        router.push("/");
     }
   };
   return (
     <div className={styles.form}>
-      <h4>فرم ثبت نام</h4>
+      <h4>فرم ورود </h4>
       <form>
         <label>ایمیل :</label>
         <input
@@ -50,12 +44,7 @@ const SignUpPage = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <label>تکرار رمز عبور:</label>
-        <input
-          type="password"
-          value={rePassword}
-          onChange={(e) => setRePassword(e.target.value)}
-        />
+       
         {loading ? (
           <ThreeDots
             height={45}
@@ -65,17 +54,17 @@ const SignUpPage = () => {
             visible={true}
           />
         ) : (
-          <button type="submit" onClick={signupHandler}>
-            ثبت نام
+          <button type="submit" onClick={signinHandler}>
+            ورود
           </button>
         )}
       </form>
       <p>
-        حساب کاربری دارید ؟ <Link href="/signin">ورود</Link>
+        حساب کاربری ندارید ؟ <Link href="/signup"> ثبت نام  </Link>
       </p>
       <Toaster />
     </div>
   );
 };
 
-export default SignUpPage;
+export default SignInPage;
