@@ -14,9 +14,9 @@ const DashboardSidebar = async({children}) => {
            <CgProfile />
            <p>{session?.user.email}</p>
            <span></span>
-           <Link href="dashbord/">حساب کاربری</Link>
-           <Link href="dashbord/my-profiles">آگهی های من</Link>
-           <Link href="dashbord/add">ثبت آگهی</Link>
+           <Link href="dashboard/">حساب کاربری</Link>
+           <Link href="dashboard/my-profiles">آگهی های من</Link>
+           <Link href="dashboard/add">ثبت آگهی</Link>
            <LogOutButton />
         </div>
         <div className={styles.main}>{children}</div>

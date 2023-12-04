@@ -1,5 +1,6 @@
 "use client";
 import styles from "@/module/TextInput.module.css";
+import { p2e } from "@/utils/reaplaceNumber";
 
 const TextInput = ({
   name,
@@ -10,7 +11,7 @@ const TextInput = ({
 }) => {
   const changeHandler = (e) => {
     const { name, value } = e.target;
-    setProfileData({ ...profileData, [name]: value });
+    setProfileData({ ...profileData, [name]: p2e(value) });
   };
   return (
     <div className={styles.container}>
