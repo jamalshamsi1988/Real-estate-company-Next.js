@@ -11,13 +11,13 @@ const RadioList = ({ profileData, setProfileData }) => {
       <p>دسته بندی</p>
       <div className={styles.main}>
         <div>
-          <label htmlFor="vila">ویلا</label>
+          <label htmlFor="villa">ویلا</label>
           <input
             type="radio"
-            value="vila"
-            id="vila"
+            value="villa"
+            id="villa"
             name="category"
-            checked={category === "vila"}
+            checked={category === "villa"}
             onChange={changeHandler}
           />
         </div>
