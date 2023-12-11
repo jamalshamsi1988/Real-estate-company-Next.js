@@ -5,6 +5,8 @@ import TextInput from "@/module/TextInput";
 import RadioList from "@/module/RadioList";
 import TextList from "@/module/TextList";
 import CustomDatePicker from "@/module/CustomDatePicker";
+import toast, { Toaster } from "react-hot-toast";
+import { ThreeDots } from "react-loader-spinner";
 
 const AddProfilePage = () => {
   const [profileData, setProfileData] = useState({
@@ -19,8 +21,23 @@ const AddProfilePage = () => {
     rules: [],
     amenities: [],
   });
+  const [loading, setLoading] = useState(false);
 
-  const submitHandler = () => {};
+  const submitHandler = async () => {
+    setLoading(true);
+    const res = await fetch("/api/profile", {
+      method: "POST",
+      body: JSON.stringify(profileData),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json();
+    setLoading(false);
+    if (data.error) {
+      toast.error(data.error);
+    } else {
+      toast.success(data.message);
+    }
+  };
   return (
     <div className={styles.container}>
       <h3>ثبت آگهی</h3>
@@ -83,11 +100,20 @@ const AddProfilePage = () => {
         profileData={profileData}
         setProfileData={setProfileData}
       />
-
-      <button className={styles.submit} onClick={submitHandler}>
-        {" "}
-        ثبت آگهی
-      </button>
+      <Toaster />
+      {loading ? (
+        <ThreeDots
+          height={45}
+          color="#304ffe"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{ margin: "auto" }}
+          visible={true}
+        />
+      ) : (
+        <button className={styles.submit} onClick={submitHandler}>
+          ثبت آگهی
+        </button>
+      )}
     </div>
   );
 };
