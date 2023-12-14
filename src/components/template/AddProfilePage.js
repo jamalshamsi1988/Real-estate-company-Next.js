@@ -7,7 +7,6 @@ import TextList from "@/module/TextList";
 import CustomDatePicker from "@/module/CustomDatePicker";
 import toast, { Toaster } from "react-hot-toast";
 import { ThreeDots } from "react-loader-spinner";
-import { set } from "mongoose";
 import { useRouter } from "next/navigation";
 
 const AddProfilePage = ({ data }) => {
@@ -24,7 +23,7 @@ const AddProfilePage = ({ data }) => {
     amenities: [],
   });
   const [loading, setLoading] = useState(false);
-const router =useRouter()
+  const router = useRouter();
   const submitHandler = async () => {
     setLoading(true);
     const res = await fetch("/api/profile", {
@@ -38,26 +37,39 @@ const router =useRouter()
       toast.error(data.error);
     } else {
       toast.success(data.message);
-      router.refresh()
+      router.refresh();
+      setProfileData({
+        title: "",
+        description: "",
+        location: "",
+        phone: "",
+        price: "",
+        realState: "",
+        constructionDate: new Date(),
+        category: "",
+        rules: [],
+        amenities: [],
+      });
+      window.scrollTo(0, 0);
     }
   };
 
-  const editHandler=async()=>{
-    setLoading(true)
-     const res= await fetch("/api/profile",{
-      method:"PATCH",
-      body:JSON.stringify(profileData),
-      headers:{"Content-Type" : "application/json"}
-     })
-     const data=await res.json();
-     setLoading(false)
-     if(data.error){
-      toast.error(data.error)
-     }else{
-      toast.success(data.message)
-      router.refresh()
-     }
-  }
+  const editHandler = async () => {
+    setLoading(true);
+    const res = await fetch("/api/profile", {
+      method: "PATCH",
+      body: JSON.stringify(profileData),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json();
+    setLoading(false);
+    if (data.error) {
+      toast.error(data.error);
+    } else {
+      toast.success(data.message);
+      router.refresh();
+    }
+  };
   useEffect(() => {
     if (data) setProfileData(data);
   }, []);
