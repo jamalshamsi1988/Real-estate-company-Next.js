@@ -8,7 +8,7 @@ import styles from '@/module/Card.module.css'
 import { sp } from '@/utils/reaplaceNumber'
 import Link from 'next/link'
 
-const Card = ({data : {title,location, price,category }}) => {
+const Card = ({data : {title,location, price,category,_id }}) => {
   const icons ={
     villa : <RiHome3Line />,
     apartment :<MdApartment />,
@@ -21,7 +21,7 @@ const Card = ({data : {title,location, price,category }}) => {
       <p className={styles.title}>{title}</p>
       <p className={styles.location}> <HiOutlineLocationMarker/>{location} </p>
       <span>{sp(price)} تومان</span>
-      <Link href="/">مشاهد آگهی <BiLeftArrowAlt /></Link>
+      <Link href={`/buy-residential/${_id}`}>مشاهد آگهی <BiLeftArrowAlt /></Link>
       
     </div>
   )
