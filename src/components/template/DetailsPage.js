@@ -10,6 +10,7 @@ import ItemList from "@/module/ItemList";
 import { BiStore } from "react-icons/bi";
 import { SiHomebridge } from "react-icons/si";
 import { e2p, sp } from "@/utils/reaplaceNumber";
+import ShareButton from "@/module/ShareButton";
 
 const DetailsPage = ({ data: {
   title,
@@ -50,12 +51,14 @@ const DetailsPage = ({ data: {
         <Title>قوانین </Title>
         <ItemList data={rules} />
       </div>
-      <div className={styles.sidbar}>
+      
+      <div className={styles.sidebar}>
         <div className={styles.realState}>
         <SiHomebridge/>
         <p> املاک{realState}</p>
         <span><AiOutlinePhone/> {e2p(phone)}</span>
         </div>
+        <ShareButton />
         <div className={styles.price}>
           <p>
             {icons[category]}
