@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from 'next/navigation'
-import {signIn} from 'next-auth/react'
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import { toast, Toaster } from "react-hot-toast";
 import { ThreeDots } from "react-loader-spinner";
 import styles from "./SignUpPage.module.css";
@@ -17,15 +17,16 @@ const SignInPage = () => {
     e.preventDefault();
 
     setLoading(true);
-    const res = await signIn("credentials",{
-        email,password ,redirect:false
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
     });
     setLoading(false);
     if (res.error) {
-        toast.error(res.error);
-     
+      toast.error(res.error);
     } else {
-        router.push("/");
+      router.push("/");
     }
   };
   return (
@@ -44,7 +45,7 @@ const SignInPage = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-       
+
         {loading ? (
           <ThreeDots
             height={45}
@@ -60,7 +61,7 @@ const SignInPage = () => {
         )}
       </form>
       <p>
-        حساب کاربری ندارید ؟ <Link href="/signup"> ثبت نام  </Link>
+        حساب کاربری ندارید ؟ <Link href="/signup"> ثبت نام </Link>
       </p>
       <Toaster />
     </div>
