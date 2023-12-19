@@ -29,8 +29,9 @@
     border-radius: 5px;
   }
   
-  .container button {
+  /* .container button {
     background-color: #00a800;
+    margin: 15px;
     border: none;
     padding: 5px 15px;
     font-size: 1rem;
@@ -40,6 +41,36 @@
     cursor: pointer;
     margin-top: 20px;
     transition: all ease-in 0.1s;
+  } */
+  .buttons :nth-child(1), .buttons a{
+    background-color: #00a800;
+    margin: 15px;
+    border: none;
+    padding: 5px 15px;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all ease-in 0.1s;
+  }
+  .buttons :nth-child(3){
+    background-color: #db0505;
+    margin: 15px;
+    border: none;
+    padding: 5px 15px;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all ease-in 0.1s;
+    color: #fff;
+    border: 1px #db0505 solid;
+    align-items: center;
+    
   }
   
   .container button:hover {
