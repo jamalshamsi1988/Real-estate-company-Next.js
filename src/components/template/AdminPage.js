@@ -9,7 +9,7 @@ import styles from '@/template/AdminPage.module.css'
         profiles.length ? null : <p className={styles.text}>هیچ آگهی در انتظار تاییدی وجود ندارد</p>
        }
        {
-        profiles.map(i => <AdminCard key={i._id} data={i}  />)
+        profiles.map(i => <AdminCard key={i._id} data={JSON.parse(JSON.stringify(i))}  />)
        }
      </div>
    )
