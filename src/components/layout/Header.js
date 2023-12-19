@@ -22,7 +22,7 @@ const Header = () => {
       </div>
       {
         data ? (  <div className={styles.login}>
-          <Link href='/dashbord'><FaUserAlt/></Link>
+          <Link href='/dashboard'><FaUserAlt/></Link>
             </div>) : ( <div className={styles.login}>
     <Link href='/signin'><FiLogIn/><span>ورود</span></Link>
       </div>)
