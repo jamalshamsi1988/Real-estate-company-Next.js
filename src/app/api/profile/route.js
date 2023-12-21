@@ -82,7 +82,7 @@ export async function POST(req) {
     });
     console.log(newProfile);
     return NextResponse.json(
-      { message: "آگهی جدید اظافه شد" },
+      { message: "آگهی جدید اضافه شد" },
       { status: 201 }
     );
   } catch (error) {

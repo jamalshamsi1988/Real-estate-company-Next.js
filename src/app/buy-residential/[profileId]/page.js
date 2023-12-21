@@ -13,3 +13,13 @@ const ProfilDetail = async({params :{profileId}}) => {
 }
 
 export default ProfilDetail
+
+export const generateMetadata=async({params:{profileId}})=>{
+  await connectDB();
+  const profile = await Profile.findOne({_id : profileId});
+
+  return {
+    title: profile.title,
+    descripton:profile.descripton
+  }
+}
